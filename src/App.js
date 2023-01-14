@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Navigation from "./components/navigation"
 
 import Meal from './components/meal';
-import MealEntryItem from './components/mealEntryItem';
+import AddFood from './components/addFood';
 // import { Octokit } from 'octokit';
 
 // const app = new Octokit.App({
@@ -24,12 +24,33 @@ class App extends Component {
         nutrition: {
           calories: 0,
           protein: 0,
-          fat: 0,
-          carbohydrates: 0,
+          carbohydrates: {
+            total: 0,
+            fiber: 0,
+            sugar: 0,
+          },
+          fats: {
+            total: 0,
+            saturated: 0,
+            polyunsaturated: 0,
+            monounsaturated: 0,
+            trans: 0,
+          },
           cholesterol: 0,
+          sodium: 0,
+          potassium: 0,
+          vitaminA: 0,
+          vitaminC: 0,
+          calcium: 0,
+          iron: 0,
         },
-        brand: 'tyson',
+        brand: {
+          name: 'tyson',
+        },
         description: '',
+        serving: {
+          size: {},
+        },
       },
       meal: [],
     };
@@ -44,9 +65,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container-fluid'>
+      <div className='container-fluid card col-11'>
         <Meal />
-        <MealEntryItem />
+        <AddFood />
       </div>
     );
   }
