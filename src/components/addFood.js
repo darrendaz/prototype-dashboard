@@ -9,15 +9,21 @@ const AddFood = () => (
         type='text'
         className='form-control'
         id='todoItem'
-        placeholder='Food name'
+        placeholder='Search for a food'
         aria-label='Food name'
         value=''
       />
       <label className='form-label' for='todoItem'>
-        Add your food
+        Search for a food
       </label>
       <button type='submit' className='btn btn-primary col-2'>
-        Add Food
+        <span className='d-flex flex-row justify-content-center align-items-center'>
+          <i class='bi bi-plus-circle-dotted'></i>
+          &nbsp;Add Food
+        </span>
+      </button>
+      <button type='submit' className='btn btn-secondary col-2'>
+        Scan a Barcode
       </button>
     </div>
   </form>
