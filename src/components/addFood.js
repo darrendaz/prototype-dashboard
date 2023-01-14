@@ -3,24 +3,21 @@ import './addFood.css';
 
 const AddFood = () => (
   <form className='form-group' onSubmit={''}>
-    <div className='form-row'>
-      <label className='col-2 col-form-label' htmlFor='todoItem'>
-        Add your food
-      </label>
-    </div>
-    <div className='form-row d-flex justify-content-start'>
+    <div className='form-floating d-flex'>
+      {/* <label for='floatingInput'>Email address</label> */}
       <input
         type='text'
         className='form-control'
         id='todoItem'
-        placeholder='ex. peanut butter, apple, pancake'
-        value={''}
+        placeholder='Food name'
+        aria-label='Food name'
+        value=''
       />
-      <button type='submit' className='btn btn-primary col-1'>
-        Add Item
-      </button>
-      <button type='button' className='btn btn-secondary col-1'>
-        Clear List
+      <label className='form-label' for='todoItem'>
+        Add your food
+      </label>
+      <button type='submit' className='btn btn-primary col-2'>
+        Add Food
       </button>
     </div>
   </form>

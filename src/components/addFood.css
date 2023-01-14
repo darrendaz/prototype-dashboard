@@ -1,3 +1,12 @@
 .form-group {
   margin-bottom: 20px;
 }
+
+#todoItem {
+  height: 50px;
+}
+
+.btn-link.remove {
+  color: #666;
+  text-decoration: none;
+}
