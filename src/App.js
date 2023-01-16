@@ -15,7 +15,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    const today = new Date().toDateString();
+
     this.state = {
+      today: today,
       message: 'To Do List',
       navList: ['Todo List', 'Calculator', 'Weather Forecast'],
       mealEntryIdCounter: 0,
@@ -60,13 +63,24 @@ class App extends Component {
     // this.setState({
     //   todoItem: '',
     // });
-    console.log('hello');
+    console.log('component did mount');
   }
 
   render() {
     return (
       <div className='container-fluid card col-11'>
-        <Meal />
+        <h1>{this.state.today}</h1>
+        <Meal id={1} name='Meal 1' />
+        <AddFood />
+        <Meal id={2} name='Meal 2' />
+        <AddFood />
+        <Meal id={3} name='Meal 3' />
+        <AddFood />
+        <Meal id={4} name='Meal 4' />
+        <AddFood />
+        <Meal id={5} name='Meal 5' />
+        <AddFood />
+        <Meal id={6} name='Meal 6' />
         <AddFood />
       </div>
     );

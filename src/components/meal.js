@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Meal = ({ message }) => (
+const Meal = (props) => (
   <table className='table table-striped'>
     <thead>
       <tr>
-        <th scope='col'>Food</th>
+        <th scope='col'>{props.name}</th>
         <th scope='col'>P</th>
         <th scope='col'>C</th>
         <th scope='col'>F</th>
