@@ -1,5 +1,6 @@
 import React from 'react';
 import './addFood.css';
+import foodItem from './foodItem.js';
 
 const handleFoodNameChange = (e) => {
   this.setState({ value: e.target.value });
@@ -7,7 +8,7 @@ const handleFoodNameChange = (e) => {
 
 const handleFoodSubmit = (e) => {
   e.preventDefault();
-  console.log('Added food');
+  console.log('Added food', foodItem.name);
 };
 
 const AddFood = () => (
@@ -28,7 +29,7 @@ const AddFood = () => (
       </label>
       <button type='submit' className='btn btn-primary col-2'>
         <span className='d-flex flex-row justify-content-center align-items-center'>
-          <i className='bi bi-plus-circle-dotted'></i>
+          <i className='bi bi-plus-circle-dotted col-2'></i>
           &nbsp;Add Food
         </span>
       </button>
