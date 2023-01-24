@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import Meal from './components/meal';
+// import Meal from './components/meal';
 
-const getWeatherKey = 'dec6459938d398a140c7e3eedf4f4959';
-
-let lon;
-let lat;
+let currentLat;
+let currentLon;
+const WEATHER_API_KEY = '3b240c01331fab696342b93cba6c4d44';
 
 navigator.geolocation.getCurrentPosition((position) => {
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
+  currentLat = position.coords.latitude;
+  currentLon = position.coords.longitude;
 });
 
-console.log(lat, lon);
+const handleClick = () => {
+  let getWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${WEATHER_API_KEY}&units=imperial`;
 
-const getWeatherUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${getWeatherKey}`;
-console.log(getWeatherUrl);
-
-fetch(getWeatherUrl).then((response) => console.log(response));
+  console.log(getWeatherURL);
+  fetch(getWeatherURL)
+    .then((res) => res.json())
+    .then((data) => console.log(data.main.temp, data.name));
+};
 
 class App extends Component {
   constructor(props) {
@@ -92,13 +93,15 @@ class App extends Component {
   }
 
   render() {
-    const meals = this.state.meals.map((meal, i) => {
-      return <Meal key={i} meal={meal} />;
-    });
+    // const meals = this.state.meals.map((meal, i) => {
+    //   return <Meal key={i} meal={meal} />;
+    // });
     return (
       <div className='container-fluid col-11'>
-        <h1 className='container-fluid card  col-11'>{this.state.today}</h1>
-        <div className='container-fluid card col-11'>{meals}</div>
+        <h1 className='container-fluid card  col-11' onClick={handleClick}>
+          {this.state.today}
+        </h1>
+        <div className='container-fluid card col-11'>meals go here</div>
       </div>
     );
   }
