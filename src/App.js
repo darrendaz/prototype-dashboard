@@ -1,24 +1,6 @@
 import React, { Component } from 'react';
 // import Meal from './components/meal';
 
-let currentLat;
-let currentLon;
-const WEATHER_API_KEY = '3b240c01331fab696342b93cba6c4d44';
-
-navigator.geolocation.getCurrentPosition((position) => {
-  currentLat = position.coords.latitude;
-  currentLon = position.coords.longitude;
-});
-
-const handleClick = () => {
-  let getWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${WEATHER_API_KEY}&units=imperial`;
-
-  console.log(getWeatherURL);
-  fetch(getWeatherURL)
-    .then((res) => res.json())
-    .then((data) => console.log(data.main.temp, data.name));
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -33,14 +15,30 @@ class App extends Component {
       navList: ['Todo List', 'Calculator', 'Weather Forecast'],
       mealEntryIdCounter: 0,
       mealList: [],
+      weatherData: {},
     };
   }
 
   componentDidMount() {
-    // this.setState({
-    //   todoItem: '',
-    // });
     console.log('component did mount');
+    let currentLat;
+    let currentLon;
+
+    const WEATHER_API_KEY = '3b240c01331fab696342b93cba6c4d44';
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      currentLat = position.coords.latitude;
+      currentLon = position.coords.longitude;
+      let getWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${WEATHER_API_KEY}&units=imperial`;
+
+      console.log(currentLat, currentLon);
+
+      fetch(getWeatherURL)
+        .then((res) => res.json())
+        .then((weatherData) => {
+          this.setState({ weatherData });
+        });
+    });
   }
 
   handleAddFood(e) {
@@ -98,9 +96,8 @@ class App extends Component {
     // });
     return (
       <div className='container-fluid col-11'>
-        <h1 className='container-fluid card  col-11' onClick={handleClick}>
-          {this.state.today}
-        </h1>
+        <h1 className='container-fluid card col-11'>weather</h1>
+        <h1 className='container-fluid card col-11'>{this.state.today}</h1>
         <div className='container-fluid card col-11'>meals go here</div>
       </div>
     );
