@@ -1,0 +1,8 @@
+.btn-link.remove {
+  color: #666;
+  text-decoration: none;
+}
+
+.btn {
+  min-width: fit-content;
+}
