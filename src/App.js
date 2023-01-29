@@ -1,33 +1,9 @@
-import React, { useState, useEffect } from 'react';
-// import Meal from './components/meal';
+import React from 'react';
+import Meal from './components/meal';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [currentTemp, setCurrentTemp] = useState('Click Update Weather');
-  // const [weather, setWeather] = useState(null);
-
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
-
-  const handleWeatherUpdate = () => {
-    let currentLat;
-    let currentLon;
-
-    const WEATHER_API_KEY = '3b240c01331fab696342b93cba6c4d44';
-
-    navigator.geolocation.getCurrentPosition((position) => {
-      currentLat = position.coords.latitude;
-      currentLon = position.coords.longitude;
-      let getWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${currentLat}&lon=${currentLon}&appid=${WEATHER_API_KEY}&units=imperial`;
-
-      fetch(getWeatherURL)
-        .then((res) => res.json())
-        .then((weatherData) =>
-          setCurrentTemp(Math.round(weatherData.main.temp))
-        );
-    });
-  };
+  // const [entries, setEntries] = useState(null);
+  // const [meals, setMeals] = useState(null);
 
   // WIP template for state obj
   // {
@@ -96,29 +72,7 @@ function App() {
 
   return (
     <div className='container-fluid col-11'>
-      <div className='container-fluid col-8'>
-        <h1 className='container-fluid card current-weather'>{currentTemp}℉</h1>
-        <p>You clicked {count} times</p>
-        <button
-          type='button'
-          className='btn btn-primary'
-          onClick={() => {
-            handleWeatherUpdate();
-            setCount(count + 1);
-          }}>
-          Update Weather
-        </button>
-
-        <p>You clicked {count} times</p>
-        <button
-          type='button'
-          className='btn btn-primary'
-          onClick={() => setCount(count + 1)}>
-          Click me
-        </button>
-      </div>
-
-      {/* <div className='container-fluid card col-11 meals-container'>{meals}</div> */}
+      <Meal />
     </div>
   );
 }
