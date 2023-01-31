@@ -1,7 +1,7 @@
 import React from 'react';
 import Meal from './components/meal';
 
-function App() {
+class App extends React.Component {
   // const [entries, setEntries] = useState(null);
   // const [meals, setMeals] = useState(null);
 
@@ -69,12 +69,13 @@ function App() {
   // const meals = this.state.meals.map((meal, i) => {
   //   return <Meal key={i} meal={meal} />;
   // });
-
-  return (
-    <div className='container-fluid col-11'>
-      <Meal />
-    </div>
-  );
+  render() {
+    return (
+      <div className='container-fluid col-11'>
+        <Meal />
+      </div>
+    );
+  }
 }
 
 export default App;

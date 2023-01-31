@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddFood from './addFood';
+import FoodItem from './foodItem';
 
 class Meal extends Component {
   constructor(props) {
@@ -50,40 +51,7 @@ class Meal extends Component {
     console.log(nutrition);
     return (
       <div className='meal-container'>
-        <table className='meal-table table table-striped'>
-          <thead>
-            <tr>
-              <th scope='col'>Food Item</th>
-              <th scope='col'>P</th>
-              <th scope='col'>C</th>
-              <th scope='col'>F</th>
-              <th scope='col'>Cals</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope='row'>{name}</th>
-              <td>{nutrition.protein}g</td>
-              <td>{nutrition.carbohydrates.total}g</td>
-              <td>{nutrition.fats.total}g</td>
-              <td>{nutrition.calories}</td>
-            </tr>
-            <tr>
-              <th scope='row'>Chicken Breast - Baked</th>
-              <td>{`40g`}g</td>
-              <td>{`40g`}g</td>
-              <td>{`40g`}g</td>
-              <td>{400}</td>
-            </tr>
-            <tr>
-              <th scope='row'>Jasmine Rice</th>
-              <td>{`40g`}g</td>
-              <td>{`40g`}g</td>
-              <td>{`40g`}g</td>
-              <td>{200}</td>
-            </tr>
-          </tbody>
-        </table>
+        <FoodItem name={name} nutrition={nutrition} />
         <AddFood />
       </div>
     );

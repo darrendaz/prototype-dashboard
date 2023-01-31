@@ -1,3 +1,5 @@
+import React from 'react';
+
 const foodItem = {
   id: 0,
   name: 'double double',
@@ -34,4 +36,38 @@ const foodItem = {
   buy: {},
 };
 
-export default foodItem;
+class FoodItem extends React.Component {
+  foodItemFactory() {
+    const name = this.props.name;
+    const nutrition = this.props.nutrition;
+    return (
+      <tr>
+        <td>{name}</td>
+        <td>{nutrition.protein}</td>
+        <td>{nutrition.carbohydrates.total}</td>
+        <td>{nutrition.fats.total}</td>
+        <td>{nutrition.calories}</td>
+      </tr>
+    );
+  }
+
+  render() {
+    console.log(foodItem);
+    return (
+      <table className='meal-table table table-striped'>
+        <thead>
+          <tr>
+            <th scope='col'>Food Item</th>
+            <th scope='col'>P</th>
+            <th scope='col'>C</th>
+            <th scope='col'>F</th>
+            <th scope='col'>Cals</th>
+          </tr>
+        </thead>
+        <tbody>{this.foodItemFactory}</tbody>
+      </table>
+    );
+  }
+}
+
+export default FoodItem;
