@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 const foodItem = {
   id: 0,
@@ -36,8 +36,8 @@ const foodItem = {
   buy: {},
 };
 
-class FoodItem extends React.Component {
-  foodItemFactory() {
+class FoodItem extends Component {
+  foodItemFactory = () => {
     const name = this.props.name;
     const nutrition = this.props.nutrition;
     return (
@@ -49,7 +49,7 @@ class FoodItem extends React.Component {
         <td>{nutrition.calories}</td>
       </tr>
     );
-  }
+  };
 
   render() {
     console.log(foodItem);
