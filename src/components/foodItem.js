@@ -37,22 +37,23 @@ const foodItem = {
 };
 
 class FoodItem extends Component {
-  foodItemFactory = () => {
-    const name = this.props.name;
-    const nutrition = this.props.nutrition;
-    return (
-      <tr>
-        <td>{name}</td>
-        <td>{nutrition.protein}</td>
-        <td>{nutrition.carbohydrates.total}</td>
-        <td>{nutrition.fats.total}</td>
-        <td>{nutrition.calories}</td>
-      </tr>
-    );
-  };
-
   render() {
     console.log(foodItem);
+    const foodItemFactory = () => {
+      const name = this.props.name;
+      const nutrition = this.props.nutrition;
+
+      return (
+        <tr>
+          <td>{name}</td>
+          <td>{nutrition.protein}</td>
+          <td>{nutrition.carbohydrates.total}</td>
+          <td>{nutrition.fats.total}</td>
+          <td>{nutrition.calories}</td>
+        </tr>
+      );
+    };
+
     return (
       <table className='meal-table table table-striped'>
         <thead>
@@ -64,7 +65,7 @@ class FoodItem extends Component {
             <th scope='col'>Cals</th>
           </tr>
         </thead>
-        <tbody>{this.foodItemFactory}</tbody>
+        <tbody>{foodItemFactory()}</tbody>
       </table>
     );
   }
