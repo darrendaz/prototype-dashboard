@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
 import './addFood.css';
 
-function AddFood() {
-  const [value, setValue] = useState('');
+function AddFood(props) {
+  const [food, setFood] = useState(props);
+  const [inputValue, setInputValue] = useState('');
   const handleFoodNameChange = (e) => {
-    setValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const handleFoodSubmit = (e) => {
     e.preventDefault();
-    window.localStorage.setItem('food', JSON.stringify(value));
-    setValue('');
+    window.localStorage.setItem('food', JSON.stringify(food));
+    setFood({
+      ...food,
+      test: inputValue,
+    });
+    setInputValue('');
   };
   return (
     <form className='form-group' onSubmit={handleFoodSubmit}>
       <div className='form-floating d-flex'>
-        {/* <label for='floatingInput'>Email address</label> */}
         <input
           type='text'
           className='form-control'
           id='todoItem'
           placeholder='Search for a food'
           aria-label='Food name'
-          value={value}
+          value={inputValue}
           onChange={handleFoodNameChange}
         />
         <label className='form-label' htmlFor='todoItem'>

@@ -1,61 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import AddFood from './addFood';
 import FoodItem from './foodItem';
+import mealsData from './mealsData';
 
-class Meal extends Component {
-  constructor(props) {
-    super(props);
+function Meal() {
+  const [meals] = useState(mealsData);
+  const [meal1] = useState(meals[1]);
 
-    this.state = {
-      id: null,
-      name: 'Ckicken Breast - Cooked',
-      completed: false,
-      nutrition: {
-        calories: 23,
-        protein: 43,
-        carbohydrates: {
-          total: 34,
-          fiber: 0,
-          sugar: 0,
-        },
-        fats: {
-          total: 12,
-          saturated: 0,
-          polyunsaturated: 0,
-          monounsaturated: 0,
-          trans: 0,
-        },
-        cholesterol: 0,
-        sodium: 0,
-        potassium: 0,
-        vitaminA: 0,
-        vitaminC: 0,
-        calcium: 0,
-        iron: 0,
-      },
-      brand: {
-        name: 'tyson',
-      },
-      description: '',
-      serving: {
-        size: {},
-      },
-      buy: {},
-    };
-  }
-
-  render() {
-    const name = this.state.name;
-    const nutrition = { ...this.state.nutrition };
-
-    console.log(nutrition);
+  const foodList = meal1.map((food, i) => {
     return (
-      <div className='meal-container'>
-        <FoodItem name={name} nutrition={nutrition} />
-        <AddFood />
-      </div>
+      <FoodItem
+        key={i}
+        foodId={food.id}
+        name={food.name}
+        brand={food.brand}
+        nutrition={food.nutrition}
+      />
     );
-  }
+  });
+
+  const totalProtein = meal1.reduce(
+    (acc, food) => acc + food.nutrition.protein,
+    0
+  );
+  return (
+    <div className='meal-container'>
+      <table className='meal-table table table-striped'>
+        <thead>
+          <tr>
+            <th scope='col'>Food Item</th>
+            <th scope='col'>Brand / Restaurant </th>
+            <th scope='col'>P</th>
+            <th scope='col'>C</th>
+            <th scope='col'>F</th>
+            <th scope='col'>Cals</th>
+          </tr>
+        </thead>
+        <tbody>{foodList}</tbody>
+        <tfoot>
+          <tr>
+            <td>Meal Total</td>
+            <td></td>
+            <td>{totalProtein}</td>
+            <td>C</td>
+            <td>F</td>
+            <td>Cals</td>
+          </tr>
+        </tfoot>
+      </table>
+      <AddFood />
+    </div>
+  );
 }
 
 export default Meal;
